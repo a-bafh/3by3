@@ -15,6 +15,7 @@ float button6X, button6Y, button6Width, button6Height;
 float button7X, button7Y, button7Width, button7Height;
 float button8X, button8Y, button8Width, button8Height;
 float button9X, button9Y, button9Width, button9Height;
+float button10X, button10Y, button10Width, button10Height;
 color button1Colour, red;
 color button2Colour, orange;
 color button3Colour, yellow;
@@ -23,7 +24,8 @@ color button5Colour, blue;
 color button6Colour, indigo;
 color button7Colour, violet;
 color button8Colour, silver;
-color button9Colour, royalblue ;
+color button9Colour;
+color button10Colour;
 
 void setup() {
   size(500, 600);
@@ -41,10 +43,10 @@ void setup() {
   pt9Y = pt10Y = pt11Y = pt12Y = height*2/3;
   pt13Y = pt14Y = pt15Y = pt16Y= height*3/3;
   //
-  button1X = width * 1/3 * 1/3; // Section 1, subscript
-  button1Y = height * 1/3 * 1/3; //
-  button1Width = width * 1/3 * 1/3;
-  button1Height = height * 1/3 * 1/3;
+  button1X = width * 1.2/10; // Section 1, subscript
+  button1Y = height * 0.2/10; //
+  button1Width = width * 1/10;
+  button1Height = height * 1/10;
   //
   button2X = width*4/9; // Section 2
   button2Y = height*1/9; //
@@ -85,6 +87,11 @@ void setup() {
   button9Y = height * 7/9; 
   button9Width = width * 1/9;
   button9Height = height * 1/9;
+  //
+  button10X = width  * 1.2/10;
+  button10Y = height * 2/10; 
+  button10Width = width * 1/10;
+  button10Height = height * 1/10;
   //
   red = #FF0000;
   yellow = #F6FF00;
@@ -135,14 +142,22 @@ void draw() {
   rect(pt9X, pt9Y, rectWidth, rectHeight);
   rect(pt10X, pt10Y, rectWidth, rectHeight);
   rect(pt11X, pt11Y, rectWidth, rectHeight);
-  //Button8 Hoverover
-  if ( mouseX>button9X && mouseX<button9X+button9Width && mouseY>button9Y && mouseY<button9Y+button9Height) {
-    button9Colour = silver; // Hoverover
+  //
+   if ( mouseX>button10X && mouseX<button10X+button10Width && mouseY>button10Y && mouseY<button10Y+button10Height) {
+    button10Colour = white; // Hoverover
   } else {
-    button9Colour = black;
+    button10Colour = black;
+  }//End If
+  fill(button10Colour);
+  rect(button10X, button10Y, button10Width, button10Height);
+  //Button8 Hoverover
+  if ( mouseX>button10X && mouseX<button10X+button10Width && mouseY>button10Y && mouseY<button10Y+button10Height) {
+    button10Colour = silver; // Hoverover
+  } else {
+    button10Colour = black;
   }//End IF
-  fill(button9Colour);
-  rect(button9X, button9Y, button9Width, button9Height);
+  fill(button10Colour);
+  rect(button10X, button10Y, button10Width, button10Height);
   //
   //Button8 Hoverover
   if ( mouseX>button8X && mouseX<button8X+button8Width && mouseY>button8Y && mouseY<button8Y+button8Height) {
@@ -286,7 +301,9 @@ void mousePressed() {
    } 
    if ( mouseX>=button9X && mouseX<=button9X+button9Width && mouseY>=button9Y && mouseY<=button9Y+button9Height) {
     println("Btn 9 activated");
-    turnOnSilver=true; 
+    turnOnSilver=true;
+     if ( mouseX>width*1/4 && mouseX<width*3/4 && mouseY>height*1/4 && mouseY<height*3/4) {
+    exit();
  
   }
 }
