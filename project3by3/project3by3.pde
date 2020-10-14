@@ -16,6 +16,9 @@ float button7X, button7Y, button7Width, button7Height;
 float button8X, button8Y, button8Width, button8Height;
 float button9X, button9Y, button9Width, button9Height;
 float button10X, button10Y, button10Width, button10Height;
+PFont titleFont;
+String[] fontList = PFont.list(); //To list fonts available on OS
+String quit = "Quit";
 color button1Colour, red;
 color button2Colour, orange;
 color button3Colour, yellow;
@@ -88,8 +91,8 @@ void setup() {
   button9Width = width * 1/9;
   button9Height = height * 1/9;
   //
-  button10X = width  * 1.2/10;
-  button10Y = height * 2/10; 
+  button10X = width  * 1/9;
+  button10Y = height * 2/9; 
   button10Width = width * 1/10;
   button10Height = height * 1/10;
   //
@@ -103,6 +106,11 @@ void setup() {
   black = #030303;
   white = #FFFFFF;
   silver = #C0C0C0;
+  //
+  println("Screen Width is", displayWidth, "Screen Height is", displayHeight);
+  println("Start of Console");
+  printArray(fontList);
+  titleFont = createFont ("High Tower Text", 5); //Font size 10
 }
 
 void draw() {
@@ -143,6 +151,12 @@ void draw() {
   rect(pt10X, pt10Y, rectWidth, rectHeight);
   rect(pt11X, pt11Y, rectWidth, rectHeight);
   //
+  textAlign(CENTER, CENTER); //Aligns the X&Y
+  //Values: [LEFT | CENTER | RIGHT] & [TOP | CENTER | BOTTOM | BASELINE];
+  textFont(titleFont, width*1/100);
+  text(quit, button10X, button10Y, button10Width, button10Height);
+  fill(190); //Reset
+  //
    if ( mouseX>button10X && mouseX<button10X+button10Width && mouseY>button10Y && mouseY<button10Y+button10Height) {
     button10Colour = white; // Hoverover
   } else {
@@ -150,14 +164,15 @@ void draw() {
   }//End If
   fill(button10Colour);
   rect(button10X, button10Y, button10Width, button10Height);
+  //
   //Button8 Hoverover
-  if ( mouseX>button10X && mouseX<button10X+button10Width && mouseY>button10Y && mouseY<button10Y+button10Height) {
-    button10Colour = silver; // Hoverover
+  if ( mouseX>button9X && mouseX<button9X+button9Width && mouseY>button9Y && mouseY<button9Y+button9Height) {
+    button9Colour = silver; // Hoverover
   } else {
-    button10Colour = black;
+    button9Colour = black;
   }//End IF
-  fill(button10Colour);
-  rect(button10X, button10Y, button10Width, button10Height);
+  fill(button9Colour);
+  rect(button9X, button9Y, button9Width, button9Height);
   //
   //Button8 Hoverover
   if ( mouseX>button8X && mouseX<button8X+button8Width && mouseY>button8Y && mouseY<button8Y+button8Height) {
@@ -302,8 +317,9 @@ void mousePressed() {
    if ( mouseX>=button9X && mouseX<=button9X+button9Width && mouseY>=button9Y && mouseY<=button9Y+button9Height) {
     println("Btn 9 activated");
     turnOnSilver=true;
-     if ( mouseX>width*1/4 && mouseX<width*3/4 && mouseY>height*1/4 && mouseY<height*3/4) {
-    exit();
+   }
+   if ( mouseX>=button10X && mouseX<=button10X+button10Width && mouseY>=button10Y && mouseY<=button10Y+button10Height) {
+      exit();
+     }//End IF, using mouseX & mouseY
  
   }
-}
